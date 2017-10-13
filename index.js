@@ -1,6 +1,6 @@
 "use strict";
 
-const postProcess = require("./post-process");
+const postProcess = require("./lib/process-doc");
 const jsdom = require("jsdom");
 
 module.exports = (inputString, options) => new Promise((resolve, reject) => {
