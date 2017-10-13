@@ -1,2 +1,3 @@
 # webidl-grammar-post-processor
-WebIDL grammar post-processor
+
+Post-processor for WebIDL's grammar.
