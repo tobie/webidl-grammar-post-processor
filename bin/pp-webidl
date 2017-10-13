@@ -1,0 +1,11 @@
+#!/usr/bin/env node
+const getStdin = require("get-stdin");
+const postProcess = require("../post-process");
+
+getStdin.buffer()
+  .then(postProcess)
+  .then(str => console.log(str))
+  .catch(err => {
+      console.error(err);
+      process.exit(1);
+  });
