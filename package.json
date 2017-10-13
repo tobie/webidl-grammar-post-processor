@@ -1,15 +1,17 @@
 {
   "name": "webidl-grammar-post-processor",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "WebIDL grammar post-processor",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "bin" : { "pp-webidl" : "./bin/pp-webidl" },
-  "repository" : {
-    "type" : "git",
-    "url" : "https://github.com/tobie/webidl-grammar-post-processor.git"
+  "bin": {
+    "pp-webidl": "./bin/pp-webidl"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tobie/webidl-grammar-post-processor.git"
   },
   "author": "Tobie Langel",
   "license": "Apache-2.0",
