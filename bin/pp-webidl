@@ -1,11 +1,34 @@
 #!/usr/bin/env node
-const getStdin = require("get-stdin");
+const fs = require("fs");
 const postProcess = require("../index");
 
-getStdin.buffer()
-  .then(postProcess)
-  .then(str => console.log(str))
-  .catch(err => {
-      console.error(err);
-      process.exit(1);
-  });
+var argv = require("yargs")
+    .usage("Usage: $0 --input [string] --output [string]")
+.option("input", {
+        alias: "i",
+        describe: "Path to input file",
+        demandOption: true,
+        type: "string",
+        normalize: true,
+        requiresArg: true
+    })
+    .option("output", {
+        alias: "o",
+        describe: "Path to output file. Defaults to overwriting input",
+        demandOption: false,
+        type: "string",
+        normalize: true,
+        requiresArg: true
+    })
+    .strict()
+    .argv;
+
+fs.readFile(argv.input, (err, buffer) => {
+    if (err) throw err;
+    postProcess(buffer).then(str => {
+        fs.writeFile(argv.output || argv.input, str, (err) => {
+            if (err) throw err;
+        });
+    }, err => { throw err; });
+});
+
