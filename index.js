@@ -8,5 +8,8 @@ module.exports = (inputString, options) => new Promise((resolve, reject) => {
     let document = dom.window.document;
     [].forEach.call(document.querySelectorAll("script.remove"), (element) => element.remove());
     postProcess(document);
-    resolve(dom.serialize());
+    let str = dom.serialize();
+    dom.window.close();
+    dom = null;
+    resolve(str);
 });
