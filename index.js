@@ -1,15 +1,20 @@
 "use strict";
 
-const postProcess = require("./lib/process-doc");
+const postProcess = require("./lib/process-doc.js");
 const jsdom = require("jsdom");
 
-module.exports = (inputString, options) => new Promise((resolve, reject) => {
-    let dom = new jsdom.JSDOM(inputString);
-    let document = dom.window.document;
-    [].forEach.call(document.querySelectorAll("script.remove"), (element) => element.remove());
+module.exports = inputString => new Promise(resolve => {
+    const dom = new jsdom.JSDOM(inputString);
+    const { document } = dom.window;
+
+    for (const el of document.querySelectorAll("script.remove")) {
+        el.remove();
+    }
+
     postProcess(document);
-    let str = dom.serialize();
+
+    const str = dom.serialize();
     dom.window.close();
-    dom = null;
+
     resolve(str);
 });

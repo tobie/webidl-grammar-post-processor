@@ -1,10 +1,10 @@
 #!/usr/bin/env node
 const fs = require("fs");
-const postProcess = require("../index");
+const postProcess = require("..");
 
-var argv = require("yargs")
+const argv = require("yargs")
     .usage("Usage: $0 --input [string] --output [string]")
-.option("input", {
+    .option("input", {
         alias: "i",
         describe: "Path to input file",
         demandOption: true,
