@@ -1,8 +1,10 @@
 #!/usr/bin/env node
 const fs = require("fs");
 const postProcess = require("..");
+const yargs = require("yargs/yargs");
+const { hideBin } = require("yargs/helpers");
 
-const { argv } = require("yargs")
+const { argv } = yargs(hideBin(process.argv))
     .usage("Usage: $0 --input [string] --output [string]")
     .option("input", {
         alias: "i",
