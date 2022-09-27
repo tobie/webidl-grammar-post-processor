@@ -3,7 +3,7 @@
 const postProcess = require("./lib/process-doc.js");
 const jsdom = require("jsdom");
 
-module.exports = inputString => new Promise(resolve => {
+module.exports = inputString => {
     const dom = new jsdom.JSDOM(inputString);
     const { document } = dom.window;
 
@@ -16,5 +16,5 @@ module.exports = inputString => new Promise(resolve => {
     const str = dom.serialize();
     dom.window.close();
 
-    resolve(str);
-});
+    return str;
+};

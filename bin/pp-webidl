@@ -2,7 +2,7 @@
 const fs = require("fs");
 const postProcess = require("..");
 
-const argv = require("yargs")
+const { argv } = require("yargs")
     .usage("Usage: $0 --input [string] --output [string]")
     .option("input", {
         alias: "i",
@@ -20,15 +20,8 @@ const argv = require("yargs")
         normalize: true,
         requiresArg: true
     })
-    .strict()
-    .argv;
+    .strict();
 
-fs.readFile(argv.input, (err, buffer) => {
-    if (err) throw err;
-    postProcess(buffer).then(str => {
-        fs.writeFile(argv.output || argv.input, str, (err) => {
-            if (err) throw err;
-        });
-    }, err => { throw err; });
-});
-
+const buffer = fs.readFileSync(argv.input);
+const result = postProcess(buffer);
+fs.writeFileSync(argv.output || argv.input, result);
