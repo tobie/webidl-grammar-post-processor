@@ -1,6 +1,6 @@
 {
   "name": "webidl-grammar-post-processor",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "WebIDL grammar post-processor",
   "main": "index.js",
   "bin": "bin/cli.js",
